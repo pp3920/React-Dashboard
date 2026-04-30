@@ -4,6 +4,7 @@ export type Priority = 'High' | 'Medium' |'Low';
 export type status = 'Pending' | 'Completed';
 
 export interface Task {
+    [x: string]: any;
 
     id: string;
     title: string
