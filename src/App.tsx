@@ -8,12 +8,12 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  // Mounting: Purana data load karo
+  // Mounting: load all data that is stored
   useEffect(() => {
     setTasks(getStoredTasks());
   }, []);
 
-  // Update: Jab bhi tasks change hon, save karo
+  // Update: when there is change in task save it.
   useEffect(() => {
     saveTasks(tasks);
   }, [tasks]);
@@ -29,8 +29,8 @@ const App: React.FC = () => {
   return (
     <div className="app-main-wrapper" style={{ backgroundColor: '#f4f7f6', minHeight: '100vh', padding: '20px 0' }}>
       {/* 
-          DASHBOARD: Humne saari state aur functions 'Dashboard' ko de diye. 
-          Ab Dashboard hi tay karega ki Filter kahan dikhega aur Stats kahan.
+          DASHBOARD: here we gave all our functions to dashboard now, Dashboard will decide where we have to
+          add that function.
       */}
       <Dashboard 
         tasks={tasks} 

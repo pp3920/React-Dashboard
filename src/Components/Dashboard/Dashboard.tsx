@@ -35,7 +35,7 @@ const Dashboard: React.FC<Props> = ({ tasks, onAddTask, onDelete, onToggle }) =>
     return matchesSearch && matchesStatus && matchesPriority;
   });
 
-  // --- 3. STATISTICS LOGIC (Hisaab-Kitaab) ---
+  // --- 3. STATISTICS LOGIC ---
  
   const totalTasks = tasks.length;
   const completedTasks = tasks.filter(t => t.status === 'completed').length;
