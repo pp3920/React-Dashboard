@@ -1,73 +1,120 @@
-# React + TypeScript + Vite
+# 📝 React Todo Dashboard (TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple yet powerful **Todo Application** built using **React + TypeScript**, featuring task management, filtering, statistics, and persistent storage using Local Storage.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- ➕ Add new tasks with priority
+- ✅ Mark tasks as completed / pending
+- 🗑️ Delete tasks
+- 🔍 Search tasks by title
+- 🎯 Filter tasks by:
+  - Status (Pending / Completed)
+  - Priority (High / Medium / Low)
+- 📊 Live statistics dashboard:
+  - Total tasks
+  - Completed tasks
+  - Pending tasks
+- 💾 Persistent storage using `localStorage`
+- 🎨 Clean and responsive UI using inline styling
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧱 Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+src/
+│
+├── components/
+│ ├── Dashboard/
+│ │ └── Dashboard.tsx
+│ ├── TaskForm/
+│ │ └── TaskForm.tsx
+│ ├── TaskFilter/
+│ │ └── TaskFilter.tsx
+│ ├── TaskList/
+│ │ └── TaskList.tsx
+│ ├── TaskItem/
+│ └── TaskItem.tsx
+│
+├── types/
+│ └── index.ts
+│
+├── utils/
+│ └── taskUtils.ts
+│
+├── App.tsx
+└── main.tsx
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧠 Core Concepts Used
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 1. React Hooks
+- `useState` → state management
+- `useEffect` → side effects (localStorage sync)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 2. TypeScript
+- Strong typing for `Task`, `Priority`, and `Status`
+- Interface-based props validation
+
+### 3. Component Architecture
+- Reusable components (TaskForm, TaskList, TaskFilter)
+- Parent-child data flow via props
+
+### 4. State Management Flow
+
+
+App.tsx (Global State)
+↓
+Dashboard (Controls + Filters + Stats)
+↓
+TaskForm → Adds Task
+TaskList → Displays Tasks
+TaskItem → Individual Task Actions
+
+
+---
+
+## 💾 Local Storage
+
+Tasks are automatically saved and loaded from browser storage.
+
+```ts
+localStorage key: "my_tasks"
+
+Utility functions:
+
+getStoredTasks() → Load saved tasks
+saveTasks(tasks) → Save tasks
+📌 Task Model
+type Priority = "High" | "Medium" | "Low";
+type Status = "pending" | "completed";
+
+interface Task {
+  id: string;
+  title: string;
+  priority: Priority;
+  status: Status;
+  duedate: string;
+}
+🛠️ Installation & Setup
+# Clone the repo
+git clone https://github.com/your-username/todo-dashboard.git
+
+# Move into project
+cd todo-dashboard
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+📸 UI Overview
+Dashboard shows task stats
+Filters allow dynamic searching
+Form for adding tasks
+List displays all tasks with actions
